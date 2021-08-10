@@ -4,25 +4,24 @@ class SubmitForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: '',
-      Email: '',
-      MobileNo: 0,
-      Designation: '',
-      items: []
+      name: '',
+      email: '',
+      mobileno: '',
+      designation: '',
+      employees: []
     };
   }
 
   render() {
-    const items = this.state.items;
     return (
       <>
-        <p>{this.state.items[0]}</p>
         <div id="form">
           <form>
             <input
               type="text"
+              name="name"
               placeholder="Name"
-              value={this.state.Name}
+              value={this.state.name}
               onChange={e => this.setState({ name: e.target.value })}
             />
             <br />
@@ -30,40 +29,46 @@ class SubmitForm extends Component {
             <input
               type="email"
               placeholder="Email"
-              value={this.state.Email}
-              onChange={e => this.setState({ name: e.target.value })}
+              name="email"
+              value={this.state.email}
+              onChange={e => this.setState({ email: e.target.value })}
             />
             <br />
             <br />
             <input
-              type="number"
+              type="text"
               placeholder="MobileNo"
-              value={this.state.MobileNo}
-              onChange={e => this.setState({ name: e.target.value })}
+              name="mobileno"
+              value={this.state.mobileno}
+              onChange={e => this.setState({ mobileno: e.target.value })}
             />
             <br />
             <br />
             <input
               type="text"
               placeholder="Designation"
-              value={this.state.Designation}
-              onChange={e => this.setState({ name: e.target.value })}
+              name="designation"
+              value={this.state.designation}
+              onChange={e => this.setState({ designation: e.target.value })}
             />
             <br />
             <br />
             <button
               onClick={() => {
                 this.setState({
-                  items: [
-                    ...this.state.items,
+                  employees: [
+                    ...this.state.employees,
                     {
-                      Name: this.state.Name,
-                      Email: this.state.Email,
-                      MobileNo: this.state.MobileNo
+                      name: this.state.name,
+                      email: this.state.email,
+                      mobileno: this.state.mobileno,
+                      designation: this.state.designation
                     }
                   ],
                   name: '',
-                  age: ''
+                  email: '',
+                  mobileno: '',
+                  designation: ''
                 });
               }}
             >
@@ -73,29 +78,24 @@ class SubmitForm extends Component {
         </div>
         <br />
         <br />
-        <div id="table">
-          <table border="1">
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>MobileNo</th>
-                <th>Designation</th>
-              </tr>
 
-              {this.state.items.map(item => {
-                return (
-                  <tr>
-                    <td>{item.Name}</td>
-                    <td>{item.Email}</td>
-                    <td>{item.MobileNo}</td>
-                    <td>{item.Designation}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <table border="1">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>MobileNo</th>
+            <th>Designation</th>
+          </tr>
+
+          {this.state.employees.map(item => (
+            <tr>
+              <td>{item.name}</td>
+              <td>{item.email}</td>
+              <td>{item.mobileno}</td>
+              <td>{item.designation}</td>
+            </tr>
+          ))}
+        </table>
       </>
     );
   }
