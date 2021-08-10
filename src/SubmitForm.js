@@ -11,73 +11,64 @@ class SubmitForm extends Component {
       items: []
     };
   }
-  handleFormSubmit = e => {
-    e.preventDefault();
-
-    let items = [...this.state.items];
-
-    items.push({
-      Name: this.state.Name,
-      Email: this.state.Email,
-      MobileNo: this.state.MobileNo,
-      Designation: this.state.Designation
-    });
-
-    this.setState({
-      items,
-      Name: '',
-      Email: '',
-      MobileNo: 0,
-      Designation: ''
-    });
-  };
-
-  handleInputChange = e => {
-    let input = e.target;
-    let name = e.target.name;
-    let value = input.value;
-
-    this.setState({
-      [name]: value
-    });
-  };
 
   render() {
     const items = this.state.items;
     return (
       <>
-        <p>{this.state.Name}</p>
+        <p>{this.state.items[0]}</p>
         <div id="form">
           <form>
             <input
               type="text"
               placeholder="Name"
-              onChange={this.state.handleInputChange}
+              value={this.state.Name}
+              onChange={e => this.setState({ name: e.target.value })}
             />
             <br />
             <br />
             <input
               type="email"
               placeholder="Email"
-              onChange={this.state.handleInputChange}
+              value={this.state.Email}
+              onChange={e => this.setState({ name: e.target.value })}
             />
             <br />
             <br />
             <input
               type="number"
               placeholder="MobileNo"
-              onChange={this.state.handleInputChange}
+              value={this.state.MobileNo}
+              onChange={e => this.setState({ name: e.target.value })}
             />
             <br />
             <br />
             <input
               type="text"
               placeholder="Designation"
-              onChange={this.state.handleInputChange}
+              value={this.state.Designation}
+              onChange={e => this.setState({ name: e.target.value })}
             />
             <br />
             <br />
-            <button onClick={this.state.handleFormSubmit}>Submit</button>
+            <button
+              onClick={() => {
+                this.setState({
+                  items: [
+                    ...this.state.items,
+                    {
+                      Name: this.state.Name,
+                      Email: this.state.Email,
+                      MobileNo: this.state.MobileNo
+                    }
+                  ],
+                  name: '',
+                  age: ''
+                });
+              }}
+            >
+              Submit
+            </button>
           </form>
         </div>
         <br />
