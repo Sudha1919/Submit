@@ -26,52 +26,83 @@ class SubmitForm extends Component {
     this.setState({
       items,
       Name: '',
-      Email: ''
+      Email: '',
+      MobileNo: 0,
+      Designation: ''
+    });
+  };
+
+  handleInputChange = e => {
+    let input = e.target;
+    let name = e.target.name;
+    let value = input.value;
+
+    this.setState({
+      [name]: value
     });
   };
 
   render() {
+    const items = this.state.items;
     return (
       <>
         <p>{this.state.Name}</p>
         <div id="form">
           <form>
-            <input type="text" placeholder="Name" />
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={this.state.handleInputChange}
+            />
             <br />
             <br />
-            <input type="email" placeholder="Email" />
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={this.state.handleInputChange}
+            />
             <br />
             <br />
-            <input type="number" placeholder="MobileNo" />
+            <input
+              type="number"
+              placeholder="MobileNo"
+              onChange={this.state.handleInputChange}
+            />
             <br />
             <br />
-            <input type="text" placeholder="Designation" />
+            <input
+              type="text"
+              placeholder="Designation"
+              onChange={this.state.handleInputChange}
+            />
             <br />
             <br />
-            <button onClick={this.props.handleFormSubmit}>Submit</button>
+            <button onSubmit={this.state.handleFormSubmit}>Submit</button>
           </form>
         </div>
         <br />
         <br />
         <div id="table">
           <table border="1">
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>MobileNo</th>
-              <th>Designation</th>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>MobileNo</th>
+                <th>Designation</th>
+              </tr>
 
-            {this.state.items.map(item => {
-              return (
-                <tr>
-                  <td>{items.Name}</td>
-                  <td>{items.Email}</td>
-                  <td>{items.MobileNo}</td>
-                  <td>{item.Designation}</td>
-                </tr>
-              );
-            })}
+              {this.state.items.map(item => {
+                return (
+                  <tr>
+                    <td>{item.Name}</td>
+                    <td>{item.Email}</td>
+                    <td>{item.MobileNo}</td>
+                    <td>{item.Designation}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </>
