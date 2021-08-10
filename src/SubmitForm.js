@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 
 class SubmitForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      Name: 'Sudha',
-      Email: 'sudhareddy.pam@gmail.com',
-      MobileNo: 9000000000,
-      Designation: 'Good'
+      Name: '',
+      Email: '',
+      MobileNo: 0,
+      Designation: '',
+      items: []
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+  handleFormSubmit = (e) => {
+    e.preventDefault();
 
+    let items = [...this.state.items];
+
+    items.push({Name: this.state.Name, Email: this.state.Email});
+
+    this.setState({
+      items,
+      Name: '',
+      Email: ''
+    });
+  };
+ 
   render() {
     return (
       <>
         <p>{this.state.Name}</p>
         <div id="form">
-          <input type="text" placeholder="Name" autofocus />
+          <input type="text" placeholder="Name" />
           <br />
           <br />
           <input type="email" placeholder="Email" />
@@ -28,13 +43,7 @@ class SubmitForm extends Component {
           <input type="text" placeholder="Designation" />
           <br />
           <br />
-          <button
-            onClick={() => {
-              this.setState({ Name: '' });
-            }}
-          >
-            Submit
-          </button>
+          <button >Submit</button>
         </div>
         <br />
         <br />
@@ -46,12 +55,15 @@ class SubmitForm extends Component {
               <th>MobileNo</th>
               <th>Designation</th>
             </tr>
-            <tr>
-              <td />
-              <td />
-              <td />
-              <td />
-            </tr>
+
+            {
+              <tr>
+                <td></td>
+                <td />
+                <td />
+                <td />
+              </tr>
+            }
           </table>
         </div>
       </>
