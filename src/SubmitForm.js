@@ -77,7 +77,7 @@ class SubmitForm extends Component {
             />
             <br />
             <br />
-            <button onSubmit={this.state.handleFormSubmit}>Submit</button>
+            <button onClick={this.state.handleFormSubmit}>Submit</button>
           </form>
         </div>
         <br />
