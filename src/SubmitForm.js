@@ -10,14 +10,18 @@ class SubmitForm extends Component {
       Designation: '',
       items: []
     };
-    this.handleChange = this.handleChange.bind(this);
   }
-  handleFormSubmit = (e) => {
+  handleFormSubmit = e => {
     e.preventDefault();
 
     let items = [...this.state.items];
 
-    items.push({Name: this.state.Name, Email: this.state.Email});
+    items.push({
+      Name: this.state.Name,
+      Email: this.state.Email,
+      MobileNo: this.state.MobileNo,
+      Designation: this.state.Designation
+    });
 
     this.setState({
       items,
@@ -25,25 +29,27 @@ class SubmitForm extends Component {
       Email: ''
     });
   };
- 
+
   render() {
     return (
       <>
         <p>{this.state.Name}</p>
         <div id="form">
-          <input type="text" placeholder="Name" />
-          <br />
-          <br />
-          <input type="email" placeholder="Email" />
-          <br />
-          <br />
-          <input type="number" placeholder="MobileNo" />
-          <br />
-          <br />
-          <input type="text" placeholder="Designation" />
-          <br />
-          <br />
-          <button >Submit</button>
+          <form>
+            <input type="text" placeholder="Name" />
+            <br />
+            <br />
+            <input type="email" placeholder="Email" />
+            <br />
+            <br />
+            <input type="number" placeholder="MobileNo" />
+            <br />
+            <br />
+            <input type="text" placeholder="Designation" />
+            <br />
+            <br />
+            <button onClick={this.props.handleFormSubmit}>Submit</button>
+          </form>
         </div>
         <br />
         <br />
@@ -56,14 +62,16 @@ class SubmitForm extends Component {
               <th>Designation</th>
             </tr>
 
-            {
-              <tr>
-                <td></td>
-                <td />
-                <td />
-                <td />
-              </tr>
-            }
+            {this.state.items.map(item => {
+              return (
+                <tr>
+                  <td>{items.Name}</td>
+                  <td>{items.Email}</td>
+                  <td>{items.MobileNo}</td>
+                  <td>{item.Designation}</td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </>
