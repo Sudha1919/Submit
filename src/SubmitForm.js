@@ -85,12 +85,12 @@ class SubmitForm extends Component {
             <th>Designation</th>
           </tr>
 
-          {this.state.employees.map(item => (
+          {this.state.employees.map(i => (
             <tr>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
-              <td>{item.mobileno}</td>
-              <td>{item.designation}</td>
+              <td>{i.name}</td>
+              <td>{i.email}</td>
+              <td>{i.mobileno}</td>
+              <td>{i.designation}</td>
             </tr>
           ))}
         </table>
